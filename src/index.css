@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+    overflow-x: hidden;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.navbar {
+    height: 4rem; /* Adjust to your navbar height */
+}
+
+.main-content {
+    margin-top: 4rem; /* Adjust to match your navbar height */
+    padding: 1rem;
+    overflow: auto; /* Ensure content is scrollable if necessary */
+}
