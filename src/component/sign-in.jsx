@@ -17,10 +17,10 @@ const SignIn = () => {
             const user = await signInTeacher(email, password);
             console.log('Teacher signed in:', user);
 
-            // Store teacher's unique UID in local storage (optional)
-            localStorage.setItem('teacherId', user.uid);
+            
+            // localStorage.setItem('teacherId', user.uid);
 
-            // Navigate to TeacherDashboard with teacherId in the route
+            
             navigate(`/teacherDashboard/${user.uid}`);
         } catch (error) {
             console.error('Error signing in:', error);
