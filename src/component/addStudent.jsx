@@ -1,4 +1,3 @@
-// src/components/AddStudent.jsx
 import React, { useState } from 'react';
 import { addStudent } from '../firestore';
 
@@ -11,8 +10,8 @@ const AddStudent = ({ teacherId, onClose, onStudentAdded }) => {
         e.preventDefault();
         try {
             await addStudent(teacherId, name, rollNo);
-            onStudentAdded(); // Notify parent component
-            onClose(); // Close the modal
+            onStudentAdded();
+            onClose(); 
         } catch (err) {
             setError('Failed to add student. Please try again.');
             console.error(err);

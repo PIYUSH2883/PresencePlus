@@ -1,4 +1,4 @@
-// src/firestore.js
+
 import { collection, addDoc, updateDoc, arrayUnion, doc, getDoc } from 'firebase/firestore';
 import { db } from './firebaseConfig';
 
@@ -56,13 +56,12 @@ export const getTeacherWithStudents = async (teacherId) => {
 
         const teacherData = teacherDoc.data();
 
-        // Fetch all student documents referenced in the teacher's students array
+      
         const studentRefs = teacherData.students.map(studentId => getDoc(doc(db, 'students', studentId)));
         const studentDocs = await Promise.all(studentRefs);
 
-        // Filter out any students that couldn't be fetched (e.g., due to missing documents)
         const students = studentDocs
-            .filter(doc => doc.exists()) // Filter out any non-existent docs
+            .filter(doc => doc.exists()) 
             .map(doc => ({ id: doc.id, ...doc.data() }));
 
         return { ...teacherData, students };
