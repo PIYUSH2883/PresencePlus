@@ -6,6 +6,7 @@ import SignUp from './component/sign-up';
 import SignIn from './component/sign-in';
 import TeacherDashboard from './component/teacherDashBoard';
 import Home from './component/Home/Home';
+import ViewAttendane from './component/ViewAttendance'
 
 function App() {
   
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/" element={<Home />} />
         <Route path="/teacherDashboard/:teacherId" element={<TeacherDashboard />} />
+        <Route path="/view-attendance/:teacherId" element={<ViewAttendane />} />
       </Routes>
       </Router>
     </>

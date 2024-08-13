@@ -17,10 +17,9 @@ const SignIn = () => {
             const user = await signInTeacher(email, password);
             console.log('Teacher signed in:', user);
 
-            
-            // localStorage.setItem('teacherId', user.uid);
+           
+            localStorage.setItem('teacherId', user.uid);
 
-            
             navigate(`/teacherDashboard/${user.uid}`);
         } catch (error) {
             console.error('Error signing in:', error);

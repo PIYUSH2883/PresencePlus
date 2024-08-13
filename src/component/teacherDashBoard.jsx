@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getTeacherWithStudents, updateAttendance } from '../firestore';
 import AddStudent from './addStudent';
 
@@ -55,14 +55,14 @@ const TeacherDashboard = () => {
                 present: attendanceMap[student.rollNo] !== undefined ? attendanceMap[student.rollNo] : false
             }));
             await updateAttendance(teacherId, selectedDate, attendanceRecords);
-            fetchTeacher(); // Refresh data after saving attendance
+            fetchTeacher(); 
         } catch (error) {
             console.error('Error saving attendance:', error);
         }
     };
 
     const handleStudentAdded = () => {
-        fetchTeacher(); // Refresh the student list after adding a student
+        fetchTeacher();
     };
 
     return (
@@ -118,6 +118,9 @@ const TeacherDashboard = () => {
                         >
                             Add Student
                         </button>
+                        <Link to={`/view-attendance/${teacherId}`}>
+                <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Attendance</button>
+            </Link>
                     </div>
                 </div>
             ) : (
