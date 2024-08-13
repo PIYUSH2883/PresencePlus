@@ -14,9 +14,9 @@ const ViewAttendance = () => {
         const fetchAttendanceData = async () => {
             try {
                 const data = await getAttendanceForRange(teacherId, new Date(startDate), new Date(endDate));
-                console.log('Fetched Attendance Data:', data); // Log the fetched data
-                setAttendanceData(data);
-                console.log("xyz,",setAttendanceData)
+                // Sort dates in attendance data
+                const sortedData = data.sort((a, b) => new Date(a.date) - new Date(b.date));
+                setAttendanceData(sortedData);
             } catch (error) {
                 console.error('Error fetching attendance data:', error);
             }
@@ -33,11 +33,10 @@ const ViewAttendance = () => {
         navigate(`/teacherDashboard/${teacherId}`);
     };
 
-  
-    const uniqueDates = [...new Set(attendanceData.map(record => record.date))];
+    // Get unique dates and roll numbers
+    const uniqueDates = [...new Set(attendanceData.map(record => record.date))].sort((a, b) => new Date(a) - new Date(b));
     const uniqueRollNumbers = [...new Set(attendanceData.map(record => record.rollNo))];
 
-    
     const getAttendanceStatus = (rollNo, date) => {
         const record = attendanceData.find(record => record.rollNo === rollNo && record.date === date);
         return record ? (record.present ? 'Present' : 'Absent') : 'N/A';
